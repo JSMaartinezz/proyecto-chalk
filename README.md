@@ -11,3 +11,5 @@ Reparto de tareas:
 7. Responsable de integración y control: Nayib/Javier
 
 Paleta de colores: https://colorhunt.co/palette/fcf9eabadfdbffa4a4ffbdbd 
+
+Contenido: Elaboración de una landing page sencilla sobre ofertas de vuelos baratos y destinos a visitar.
