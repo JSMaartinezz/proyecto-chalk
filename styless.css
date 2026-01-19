@@ -1,8 +1,15 @@
 :root {
-    --bg: #FCF9EA;
-    --mint: #BADFDB;
-    --coral: #FFA4A4;
-    --pink: #FFBDBD;
+    /* Variables estándar del proyecto (equipo) */
+    --color-crema: #fcf9ea;
+    --color-azul: #adbffb;
+    --color-rosa-claro: #ff8484;
+    --color-rosa-suave: #ffbdbd;
+
+    /* Mapeo a tu sistema existente (para no reescribir nada) */
+    --bg: var(--color-crema);
+    --mint: var(--color-azul);
+    --coral: var(--color-rosa-claro);
+    --pink: var(--color-rosa-suave);
 
     --ink: #1e1e1e;
     --muted: #4b4b4b;
