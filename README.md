@@ -2,12 +2,12 @@
 Proyecto colaborativo:
 
 Reparto de tareas:
-1. Responsable de estructura base:
-2. Responsable de header y navegación:
-3. Responsable de sección Hero:
-4. Responsable de sección de contenido:
-5. Responsable de sección visual/testimonial:
-6. Responsable de footer:
-7. Responsable de integración y control: 
+1. Responsable de estructura base: Nayib/Nico
+2. Responsable de header y navegación: Valentín 
+3. Responsable de sección Hero: Silvia
+4. Responsable de sección de contenido: Jose 
+5. Responsable de sección visual/testimonial: Silvia/Javier
+6. Responsable de footer: Paquito
+7. Responsable de integración y control: Nayib/Javier
 
 Paleta de colores: https://colorhunt.co/palette/fcf9eabadfdbffa4a4ffbdbd 
