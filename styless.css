@@ -1,0 +1,11 @@
+:root {
+  --color-crema: #fcf9ea;
+  --color-azul: #adbffb;
+  --color-rosa-claro: #ffa4a4;
+  --color-rosa-suave: #ffbdbd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
