@@ -1,307 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="es">
+
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Travel Destinations</title>
     <link rel="stylesheet" href="styless.css">
-</head>
-<body>
-    <!-- SECTION: Contenido (Carrusel de fotos + texto) -->
-<section class="deals" aria-labelledby="deals-title">
-  <div class="deals__container">
-    <header class="deals__header">
-      <p class="deals__kicker">Viajes baratos</p>
-      <h2 id="deals-title" class="deals__title">Destinos con precio real y fechas flexibles</h2>
-      <p class="deals__subtitle">
-        Explora ofertas destacadas. Cambia de destino sin recargar la página y guarda los que te interesan.
-      </p>
-    </header>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
 
-    <div class="carousel" data-carousel>
-      <div class="carousel__track" data-track aria-live="polite">
-        <!-- Slide 1 -->
-        <article class="slide is-active" data-slide aria-label="1 de 6">
-          <div class="slide__media">
-            <img
-              class="slide__img"
-              src="https://images.unsplash.com/photo-1505735454785-7403f8b0b3d7?auto=format&fit=crop&w=1600&q=70"
-              alt="Ciudad junto al mar al atardecer"
-              loading="lazy"
-            />
-            <span class="slide__tag">Top ahorro</span>
-          </div>
-
-          <div class="slide__content">
-            <h3 class="slide__title">Lisboa</h3>
-            <p class="slide__text">
-              Escapada urbana con buen clima. Ideal si buscas comer bien, caminar barrios históricos y volver con fotos.
-            </p>
-
-            <div class="slide__meta">
-              <div class="meta__item">
-                <span class="meta__label">Desde</span>
-                <span class="meta__value">39€</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Mejor mes</span>
-                <span class="meta__value">Mar–May</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Tipo</span>
-                <span class="meta__value">Ciudad</span>
-              </div>
+  <body>
+    <main class="slider-container">
+      <ul class="slider">
+        <!-- Lisbon -->
+        <li class="item active"
+          style="background-image: url('https://images.unsplash.com/photo-1505735454785-7403f8b0b3d7?auto=format&fit=crop&w=800&q=80')">
+          <div class="content">
+            <span class="tag">Top savings</span>
+            <h2 class="title">Lisbon</h2>
+            <p class="description">Urban getaway with great weather. Perfect if you want good food, historic
+              neighborhoods, and great photos.</p>
+            <div class="meta">
+              <div class="meta-item"><span>From</span><strong>39€</strong></div>
+              <div class="meta-item"><span>Best month</span><strong>Mar-May</strong></div>
+              <div class="meta-item"><span>Type</span><strong>City</strong></div>
             </div>
-
-            <div class="slide__actions">
-              <button class="btn btn--primary" type="button" data-action="view">Ver oferta</button>
-              <button class="btn btn--ghost" type="button" data-action="save" aria-pressed="false">
-                Guardar
-              </button>
+            <div class="actions">
+              <button class="btn-primary">View offer</button>
+              <button class="btn-save"><i class="far fa-bookmark"></i> Save</button>
             </div>
           </div>
-        </article>
+        </li>
 
-        <!-- Slide 2 -->
-        <article class="slide" data-slide aria-label="2 de 6">
-          <div class="slide__media">
-            <img
-              class="slide__img"
-              src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1600&q=70"
-              alt="Paisaje de montaña con lago"
-              loading="lazy"
-            />
-            <span class="slide__tag">Naturaleza</span>
-          </div>
-
-          <div class="slide__content">
-            <h3 class="slide__title">Dolomitas</h3>
-            <p class="slide__text">
-              Rutas fáciles y vistas brutales. Perfecto si tu prioridad es desconectar con caminatas y aire limpio.
-            </p>
-
-            <div class="slide__meta">
-              <div class="meta__item">
-                <span class="meta__label">Desde</span>
-                <span class="meta__value">59€</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Mejor mes</span>
-                <span class="meta__value">Jun–Sep</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Tipo</span>
-                <span class="meta__value">Montaña</span>
-              </div>
+        <!-- Dolomites -->
+        <li class="item"
+          style="background-image: url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80')">
+          <div class="content">
+            <span class="tag">Nature</span>
+            <h2 class="title">Dolomites</h2>
+            <p class="description">Easy trails and stunning views. Perfect if your priority is disconnecting with hikes
+              and fresh air.</p>
+            <div class="meta">
+              <div class="meta-item"><span>From</span><strong>59€</strong></div>
+              <div class="meta-item"><span>Best month</span><strong>Jun-Sep</strong></div>
+              <div class="meta-item"><span>Type</span><strong>Mountain</strong></div>
             </div>
-
-            <div class="slide__actions">
-              <button class="btn btn--primary" type="button" data-action="view">Ver oferta</button>
-              <button class="btn btn--ghost" type="button" data-action="save" aria-pressed="false">
-                Guardar
-              </button>
+            <div class="actions">
+              <button class="btn-primary">View offer</button>
+              <button class="btn-save"><i class="far fa-bookmark"></i> Save</button>
             </div>
           </div>
-        </article>
+        </li>
 
-        <!-- Slide 3 -->
-        <article class="slide" data-slide aria-label="3 de 6">
-          <div class="slide__media">
-            <img
-              class="slide__img"
-              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=70"
-              alt="Playa con olas y cielo azul"
-              loading="lazy"
-            />
-            <span class="slide__tag">Playa</span>
-          </div>
-
-          <div class="slide__content">
-            <h3 class="slide__title">Algarve</h3>
-            <p class="slide__text">
-              Playas, calas y pueblos tranquilos. Ajusta fechas y busca precios bajos fuera del pico de verano.
-            </p>
-
-            <div class="slide__meta">
-              <div class="meta__item">
-                <span class="meta__label">Desde</span>
-                <span class="meta__value">45€</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Mejor mes</span>
-                <span class="meta__value">Abr–Jun</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Tipo</span>
-                <span class="meta__value">Costa</span>
-              </div>
+        <!-- Algarve -->
+        <li class="item"
+          style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80')">
+          <div class="content">
+            <span class="tag">Beach</span>
+            <h2 class="title">Algarve</h2>
+            <p class="description">Beaches, coves, and quiet villages. Adjust dates and look for low prices outside peak
+              summer.</p>
+            <div class="meta">
+              <div class="meta-item"><span>From</span><strong>45€</strong></div>
+              <div class="meta-item"><span>Best month</span><strong>Apr-Jun</strong></div>
+              <div class="meta-item"><span>Type</span><strong>Coast</strong></div>
             </div>
-
-            <div class="slide__actions">
-              <button class="btn btn--primary" type="button" data-action="view">Ver oferta</button>
-              <button class="btn btn--ghost" type="button" data-action="save" aria-pressed="false">
-                Guardar
-              </button>
+            <div class="actions">
+              <button class="btn-primary">View offer</button>
+              <button class="btn-save"><i class="far fa-bookmark"></i> Save</button>
             </div>
           </div>
-        </article>
+        </li>
 
-        <!-- Slide 4 -->
-        <article class="slide" data-slide aria-label="4 de 6">
-          <div class="slide__media">
-            <img
-              class="slide__img"
-              src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1600&q=70"
-              alt="Calle europea con arquitectura clásica"
-              loading="lazy"
-            />
-            <span class="slide__tag">Fin de semana</span>
-          </div>
-
-          <div class="slide__content">
-            <h3 class="slide__title">Praga</h3>
-            <p class="slide__text">
-              Ciudad compacta, fácil de recorrer. Buena para un finde si quieres cultura sin logística compleja.
-            </p>
-
-            <div class="slide__meta">
-              <div class="meta__item">
-                <span class="meta__label">Desde</span>
-                <span class="meta__value">52€</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Mejor mes</span>
-                <span class="meta__value">Feb–Abr</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Tipo</span>
-                <span class="meta__value">Ciudad</span>
-              </div>
+        <!-- Prague -->
+        <li class="item"
+          style="background-image: url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=800&q=80')">
+          <div class="content">
+            <span class="tag">Weekend</span>
+            <h2 class="title">Prague</h2>
+            <p class="description">Compact city, easy to explore. Great for a weekend if you want culture without
+              complex logistics.</p>
+            <div class="meta">
+              <div class="meta-item"><span>From</span><strong>52€</strong></div>
+              <div class="meta-item"><span>Best month</span><strong>Feb-Apr</strong></div>
+              <div class="meta-item"><span>Type</span><strong>City</strong></div>
             </div>
-
-            <div class="slide__actions">
-              <button class="btn btn--primary" type="button" data-action="view">Ver oferta</button>
-              <button class="btn btn--ghost" type="button" data-action="save" aria-pressed="false">
-                Guardar
-              </button>
+            <div class="actions">
+              <button class="btn-primary">View offer</button>
+              <button class="btn-save"><i class="far fa-bookmark"></i> Save</button>
             </div>
           </div>
-        </article>
+        </li>
 
-        <!-- Slide 5 -->
-        <article class="slide" data-slide aria-label="5 de 6">
-          <div class="slide__media">
-            <img
-              class="slide__img"
-              src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=70"
-              alt="Cafetería y calle con ambiente"
-              loading="lazy"
-            />
-            <span class="slide__tag">Gastro</span>
-          </div>
-
-          <div class="slide__content">
-            <h3 class="slide__title">San Sebastián</h3>
-            <p class="slide__text">
-              Pintxos, paseo marítimo y plan fácil. Si optimizas días, sale barato sin renunciar a calidad.
-            </p>
-
-            <div class="slide__meta">
-              <div class="meta__item">
-                <span class="meta__label">Desde</span>
-                <span class="meta__value">48€</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Mejor mes</span>
-                <span class="meta__value">Oct–Nov</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Tipo</span>
-                <span class="meta__value">Costa</span>
-              </div>
+        <!-- San Sebastián -->
+        <li class="item"
+          style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80')">
+          <div class="content">
+            <span class="tag">Food</span>
+            <h2 class="title">San Sebastián</h2>
+            <p class="description">Pintxos, seaside promenade, and easy plans. Optimize days for affordable prices
+              without sacrificing quality.</p>
+            <div class="meta">
+              <div class="meta-item"><span>From</span><strong>48€</strong></div>
+              <div class="meta-item"><span>Best month</span><strong>Oct-Nov</strong></div>
+              <div class="meta-item"><span>Type</span><strong>Coast</strong></div>
             </div>
-
-            <div class="slide__actions">
-              <button class="btn btn--primary" type="button" data-action="view">Ver oferta</button>
-              <button class="btn btn--ghost" type="button" data-action="save" aria-pressed="false">
-                Guardar
-              </button>
+            <div class="actions">
+              <button class="btn-primary">View offer</button>
+              <button class="btn-save"><i class="far fa-bookmark"></i> Save</button>
             </div>
           </div>
-        </article>
+        </li>
 
-        <!-- Slide 6 -->
-        <article class="slide" data-slide aria-label="6 de 6">
-          <div class="slide__media">
-            <img
-              class="slide__img"
-              src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=70"
-              alt="Carretera hacia un paisaje amplio"
-              loading="lazy"
-            />
-            <span class="slide__tag">Roadtrip</span>
-          </div>
-
-          <div class="slide__content">
-            <h3 class="slide__title">Andalucía interior</h3>
-            <p class="slide__text">
-              Ruta por pueblos blancos y parques naturales. Buen precio si viajas con coche y alojas entre semana.
-            </p>
-
-            <div class="slide__meta">
-              <div class="meta__item">
-                <span class="meta__label">Desde</span>
-                <span class="meta__value">35€</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Mejor mes</span>
-                <span class="meta__value">Ene–Mar</span>
-              </div>
-              <div class="meta__item">
-                <span class="meta__label">Tipo</span>
-                <span class="meta__value">Ruta</span>
-              </div>
+        <!-- Andalusia -->
+        <li class="item"
+          style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80')">
+          <div class="content">
+            <span class="tag">Roadtrip</span>
+            <h2 class="title">Andalusia</h2>
+            <p class="description">Route through white villages and natural parks. Great price if traveling by car and
+              staying on weekdays.</p>
+            <div class="meta">
+              <div class="meta-item"><span>From</span><strong>35€</strong></div>
+              <div class="meta-item"><span>Best month</span><strong>Jan-Mar</strong></div>
+              <div class="meta-item"><span>Type</span><strong>Route</strong></div>
             </div>
-
-            <div class="slide__actions">
-              <button class="btn btn--primary" type="button" data-action="view">Ver oferta</button>
-              <button class="btn btn--ghost" type="button" data-action="save" aria-pressed="false">
-                Guardar
-              </button>
+            <div class="actions">
+              <button class="btn-primary">View offer</button>
+              <button class="btn-save"><i class="far fa-bookmark"></i> Save</button>
             </div>
           </div>
-        </article>
-      </div>
+        </li>
+      </ul>
 
-      <div class="carousel__controls">
-        <button class="icon-btn" type="button" data-prev aria-label="Anterior">
-          <span aria-hidden="true">‹</span>
+      <nav class="nav">
+        <button class="nav-btn prev">
+          <i class="fas fa-chevron-left"></i>
         </button>
-
-        <div class="carousel__dots" role="tablist" aria-label="Seleccionar destino">
-          <button class="dot is-active" type="button" data-dot aria-label="Ir al destino 1" aria-current="true"></button>
-          <button class="dot" type="button" data-dot aria-label="Ir al destino 2"></button>
-          <button class="dot" type="button" data-dot aria-label="Ir al destino 3"></button>
-          <button class="dot" type="button" data-dot aria-label="Ir al destino 4"></button>
-          <button class="dot" type="button" data-dot aria-label="Ir al destino 5"></button>
-          <button class="dot" type="button" data-dot aria-label="Ir al destino 6"></button>
+        <div class="dots">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>
+          <span class="dot" data-index="3"></span>
+          <span class="dot" data-index="4"></span>
+          <span class="dot" data-index="5"></span>
         </div>
-
-        <button class="icon-btn" type="button" data-next aria-label="Siguiente">
-          <span aria-hidden="true">›</span>
+        <button class="nav-btn next">
+          <i class="fas fa-chevron-right"></i>
         </button>
-      </div>
+      </nav>
+    </main>
 
-      <div class="carousel__footer">
-        <div class="carousel__status" data-status>1 / 6</div>
-        <div class="carousel__toggles">
-          <button class="mini-btn" type="button" data-autoplay aria-pressed="true">Autoplay</button>
-          <button class="mini-btn" type="button" data-reduced aria-pressed="false">Reducir movimiento</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<script src="app.js"></script>
-</body>
+    <script src="app.js"></script>
+  </body>
+
 </html>

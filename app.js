@@ -1,124 +1,255 @@
-// Carrusel ES6: next/prev, dots, teclado, swipe, autoplay, reducir movimiento
-(() => {
-    const root = document.querySelector('[data-carousel]');
-    if (!root) return;
-
-    const track = root.querySelector('[data-track]');
-    const slides = Array.from(root.querySelectorAll('[data-slide]'));
-    const dots = Array.from(root.querySelectorAll('[data-dot]'));
-    const btnPrev = root.querySelector('[data-prev]');
-    const btnNext = root.querySelector('[data-next]');
-    const status = root.querySelector('[data-status]');
-    const btnAutoplay = root.querySelector('[data-autoplay]');
-    const btnReduced = root.querySelector('[data-reduced]');
-
-    let index = 0;
-    let autoplayId = null;
-    let autoplayOn = true;
-    let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
-
-    const setActive = (i) => {
-        index = clamp(i, 0, slides.length - 1);
-
-        track.scrollTo({
-            left: slides[index].offsetLeft,
-            behavior: reducedMotion ? 'auto' : 'smooth'
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.slider');
+    const items = document.querySelectorAll('.item');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.nav-btn.prev');
+    const nextBtn = document.querySelector('.nav-btn.next');
+    const saveBtns = document.querySelectorAll('.btn-save');
+    
+    let currentIndex = 3; // Empezar con el slide central
+    let autoPlayInterval = null;
+    const autoPlayDelay = 4000;
+    
+    // Función para actualizar posiciones (igual que el CodePen)
+    function updatePositions() {
+        items.forEach((item, index) => {
+            item.classList.remove('active');
+            
+            // Calcular la nueva posición basada en la diferencia con currentIndex
+            const diff = index - currentIndex;
+            
+            // Posicionamiento basado en la diferencia
+            if (diff === 0) {
+                // Slide central
+                item.style.left = '50%';
+                item.style.transform = 'translateY(-50%) translateX(-50%) scale(1)';
+                item.style.opacity = '1';
+                item.style.zIndex = '3';
+                item.classList.add('active');
+            } else if (Math.abs(diff) === 1) {
+                // Slides inmediatamente adyacentes
+                const direction = diff > 0 ? 1 : -1;
+                item.style.left = `${50 + (direction * 15)}%`;
+                item.style.transform = 'translateY(-50%) translateX(-50%) scale(0.9)';
+                item.style.opacity = '0.7';
+                item.style.zIndex = '2';
+            } else if (Math.abs(diff) === 2) {
+                // Slides dos posiciones alejadas
+                const direction = diff > 0 ? 1 : -1;
+                item.style.left = `${50 + (direction * 30)}%`;
+                item.style.transform = 'translateY(-50%) translateX(-50%) scale(0.8)';
+                item.style.opacity = '0.4';
+                item.style.zIndex = '1';
+            } else {
+                // Slides muy alejados (invisibles)
+                const direction = diff > 0 ? 1 : -1;
+                item.style.left = `${50 + (direction * 45)}%`;
+                item.style.transform = 'translateY(-50%) translateX(-50%) scale(0.7)';
+                item.style.opacity = '0';
+                item.style.zIndex = '0';
+            }
         });
-
-        slides.forEach((s, si) => s.classList.toggle('is-active', si === index));
-        dots.forEach((d, di) => {
-            const active = di === index;
-            d.classList.toggle('is-active', active);
-            if (active) d.setAttribute('aria-current', 'true');
-            else d.removeAttribute('aria-current');
+        
+        // Actualizar dots
+        updateDots();
+    }
+    
+    // Función para actualizar dots
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            if (index === currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
         });
-
-        if (status) status.textContent = `${index + 1} / ${slides.length}`;
-    };
-
-    const next = () => setActive(index + 1 > slides.length - 1 ? 0 : index + 1);
-    const prev = () => setActive(index - 1 < 0 ? slides.length - 1 : index - 1);
-
-    const stopAutoplay = () => {
-        if (autoplayId) window.clearInterval(autoplayId);
-        autoplayId = null;
-    };
-
-    const startAutoplay = () => {
-        stopAutoplay();
-        if (!autoplayOn) return;
-        if (reducedMotion) return;
-        autoplayId = window.setInterval(next, 4500);
-    };
-
-    // Click controls
-    btnNext?.addEventListener('click', () => { next(); startAutoplay(); });
-    btnPrev?.addEventListener('click', () => { prev(); startAutoplay(); });
-
-    dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => { setActive(i); startAutoplay(); });
+    }
+    
+    // Función para ir al siguiente slide
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % items.length;
+        updatePositions();
+        resetAutoPlay();
+    }
+    
+    // Función para ir al slide anterior
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        updatePositions();
+        resetAutoPlay();
+    }
+    
+    // Función para ir a un slide específico
+    function goToSlide(index) {
+        if (index !== currentIndex) {
+            currentIndex = index;
+            updatePositions();
+            resetAutoPlay();
+        }
+    }
+    
+    // Función para toggle save
+    function toggleSave(button) {
+        const isSaved = button.classList.contains('saved');
+        
+        if (isSaved) {
+            button.classList.remove('saved');
+            button.innerHTML = '<i class="far fa-bookmark"></i> Save';
+        } else {
+            button.classList.add('saved');
+            button.innerHTML = '<i class="fas fa-bookmark"></i> Saved';
+        }
+        
+        resetAutoPlay();
+    }
+    
+    // Autoplay functions
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayInterval = setInterval(nextSlide, autoPlayDelay);
+    }
+    
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+        }
+    }
+    
+    function resetAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+    
+    // Event Listeners
+    prevBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        prevSlide();
     });
-
-    // Save button toggle (demo)
-    root.addEventListener('click', (e) => {
-        const btn = e.target.closest('[data-action="save"]');
-        if (!btn) return;
-        const pressed = btn.getAttribute('aria-pressed') === 'true';
-        btn.setAttribute('aria-pressed', String(!pressed));
-        btn.textContent = pressed ? 'Guardar' : 'Guardado';
+    
+    nextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        nextSlide();
     });
-
-    // Keyboard
-    root.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') { next(); startAutoplay(); }
-        if (e.key === 'ArrowLeft') { prev(); startAutoplay(); }
+    
+    // Dots navigation
+    dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+            const index = parseInt(this.dataset.index);
+            goToSlide(index);
+        });
     });
-    root.tabIndex = 0;
-
-    // Swipe (pointer events)
+    
+    // Save buttons
+    saveBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleSave(this);
+        });
+    });
+    
+    // View buttons
+    document.querySelectorAll('.btn-primary').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const activeSlide = document.querySelector('.item.active');
+            const destination = activeSlide.querySelector('.title').textContent;
+            alert(`Viewing offer for: ${destination}`);
+            resetAutoPlay();
+        });
+    });
+    
+    // Click en slides para navegar
+    items.forEach((item, index) => {
+        item.addEventListener('click', function(e) {
+            if (!e.target.closest('.btn-primary') && !e.target.closest('.btn-save')) {
+                goToSlide(index);
+            }
+        });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevSlide();
+        }
+    });
+    
+    // Swipe para móvil
     let startX = 0;
-    let isDown = false;
-
-    track.addEventListener('pointerdown', (e) => {
-        isDown = true;
+    let isDragging = false;
+    
+    slider.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        stopAutoPlay();
+    }, { passive: true });
+    
+    slider.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+    }, { passive: false });
+    
+    slider.addEventListener('touchend', function(e) {
+        if (!isDragging) return;
+        
+        const endX = e.changedTouches[0].clientX;
+        const diffX = startX - endX;
+        
+        if (Math.abs(diffX) > 50) {
+            if (diffX > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+        
+        isDragging = false;
+        resetAutoPlay();
+    });
+    
+    // Mouse drag para desktop
+    slider.addEventListener('mousedown', function(e) {
         startX = e.clientX;
-        track.setPointerCapture(e.pointerId);
+        isDragging = true;
+        stopAutoPlay();
     });
-
-    track.addEventListener('pointerup', (e) => {
-        if (!isDown) return;
-        isDown = false;
-
-        const dx = e.clientX - startX;
-        if (Math.abs(dx) < 40) return;
-
-        if (dx < 0) next();
-        else prev();
-
-        startAutoplay();
+    
+    slider.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        e.preventDefault();
     });
-
-    // Autoplay toggle
-    btnAutoplay?.addEventListener('click', () => {
-        autoplayOn = !autoplayOn;
-        btnAutoplay.setAttribute('aria-pressed', String(autoplayOn));
-        startAutoplay();
+    
+    slider.addEventListener('mouseup', function(e) {
+        if (!isDragging) return;
+        
+        const endX = e.clientX;
+        const diffX = startX - endX;
+        
+        if (Math.abs(diffX) > 50) {
+            if (diffX > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+        
+        isDragging = false;
+        resetAutoPlay();
     });
-
-    // Reduced motion toggle (manual)
-    btnReduced?.addEventListener('click', () => {
-        reducedMotion = !reducedMotion;
-        btnReduced.setAttribute('aria-pressed', String(reducedMotion));
-        stopAutoplay();
-        startAutoplay();
-    });
-
-    // Sync index on resize (layout changes)
-    window.addEventListener('resize', () => setActive(index));
-
-    // Init
-    setActive(0);
-    startAutoplay();
-})();
+    
+    // Pausar autoplay al hacer hover
+    slider.addEventListener('mouseenter', stopAutoPlay);
+    slider.addEventListener('mouseleave', startAutoPlay);
+    
+    // Inicializar
+    updatePositions();
+    startAutoPlay();
+    
+    // Ajustar en resize
+    window.addEventListener('resize', updatePositions);
+});
